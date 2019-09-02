@@ -43,7 +43,7 @@ class HomeController extends AbstractController
      *@Route("/woman", name="index_woman")
      * @return void
      */
-    public function index_man(ParfumRepository $parfum)
+    public function index_woman(ParfumRepository $parfum)
     {
         $menSelection = $parfum->allMenParfum();
         //var_dump(count($menSelection));
