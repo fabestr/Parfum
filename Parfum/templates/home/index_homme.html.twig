@@ -5,7 +5,14 @@
     <h1>Parfums Homme</h1>
     {% for man in mens %}
 
-        <p>{{ man.name }}</p>
+    <div class="card" style="width: 18rem;">
+            <img src="{{man.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{man.brand}} - {{ man.name }}</h5>
+              <p class="card-text">{{man.price}}</p>
+              <a href="#" class="btn btn-primary">Ajouter au panier</a>
+            </div>
+          </div>
 
     {% endfor %}
 

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body%}
+
+    {% for woman in women  %}
+    <div class="card" style="width: 18rem;">
+            <img src="{{woman.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{woman.brand}} - {{ woman.name }}</h5>
+              <p class="card-text">S</p>
+              <a href="#" class="btn btn-primary">Ajouter au panier</a>
+            </div>
+          </div>
+    {% endfor %}
+
+{% endblock %}

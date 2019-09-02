@@ -45,11 +45,11 @@ class HomeController extends AbstractController
      */
     public function index_woman(ParfumRepository $parfum)
     {
-        $menSelection = $parfum->allMenParfum();
+        $womenSelection = $parfum->allWomanParfum();
         //var_dump(count($menSelection));
         //die;
-       return $this->render('home/index_homme.html.twig',[
-            'mens' => $menSelection
+       return $this->render('home/index_woman.html.twig',[
+            'women' => $womenSelection
         ]);
     }
 
