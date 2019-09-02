@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ParfumRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class HomeController extends AbstractController
 {
@@ -14,10 +15,26 @@ class HomeController extends AbstractController
      *@Route("/", name="home")
      * @return void
      */
-    public function index()
+    public function index(ParfumRepository $parfum)
     {
-        $this->render('home/index.html.twig',[
+       
+       return $this->render('home/index.html.twig',[
+            
+        ]);
+    }
 
+    /**
+     * Undocumented function
+     *@Route("/", name="index_man")
+     * @return void
+     */
+    public function index_man(ParfumRepository $parfum)
+    {
+        $menSelection = $parfum->allMenParfum();
+        //var_dump(count($menSelection));
+        //die;
+       return $this->render('home/index_homme.html.twig',[
+            'mens' => $menSelection
         ]);
     }
 

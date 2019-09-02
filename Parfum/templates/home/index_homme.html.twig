@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Top vente</h1>
+    {% for man in mens %}
+
+        <p>{{ man.name }}</p>
+
+    {% endfor %}
+
+</div>
+
+
+{% endblock  %}
