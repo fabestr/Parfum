@@ -56,7 +56,7 @@ class User implements UserInterface
     private $address;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $zipCode;
 
