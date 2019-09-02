@@ -25,7 +25,7 @@ class HomeController extends AbstractController
 
     /**
      * Undocumented function
-     *@Route("/", name="index_man")
+     *@Route("/man", name="index_man")
      * @return void
      */
     public function index_man(ParfumRepository $parfum)
@@ -37,5 +37,21 @@ class HomeController extends AbstractController
             'mens' => $menSelection
         ]);
     }
+
+    /**
+     * Undocumented function
+     *@Route("/woman", name="index_woman")
+     * @return void
+     */
+    public function index_man(ParfumRepository $parfum)
+    {
+        $menSelection = $parfum->allMenParfum();
+        //var_dump(count($menSelection));
+        //die;
+       return $this->render('home/index_homme.html.twig',[
+            'mens' => $menSelection
+        ]);
+    }
+
 
 }

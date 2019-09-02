@@ -32,6 +32,18 @@ class ParfumRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function allWomanParfum()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->andWhere('p.sex = :val')
+            ->orderBy('p.name', 'ASC')
+            ->setParameter('val','woman')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Parfum[] Returns an array of Parfum objects
     //  */
