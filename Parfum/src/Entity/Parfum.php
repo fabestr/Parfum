@@ -54,7 +54,7 @@ class Parfum
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OderLine", mappedBy="parfum")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderLine", mappedBy="parfum")
      */
     private $orderLine;
 

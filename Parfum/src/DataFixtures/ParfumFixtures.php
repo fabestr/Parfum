@@ -56,7 +56,7 @@ class ParfumFixtures extends Fixture
                 $parfum->setName($faker->randomElement($array = array ('Mr Burberry', 'Mr Burberry Indigo','Brit Rythm pour homme','London pour homme')));
             }else if($parfum->getBrand() == 'Burberry' && $parfum->getSex() == 'woman'){
                 $parfum->setName($faker->randomElement($array = array ('Burberry her blosson', 'Burberry her','Brit Rythm pour homme','London pour homme')));
-            }else if()
+            }
             
             $parfum->setPrice($faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 120)); // 48.8932)
             $parfum->setContenance($faker->randomElement($array = array ('50 ml','75 ml', '100 ml')));

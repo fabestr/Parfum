@@ -4,13 +4,13 @@
 <div class="container">
     <h1>Parfums Homme</h1>
     {% for man in mens %}
-<article id="{{ man.id }}">
+<article >
     <div  class="card panier" style="width: 18rem;">
             <img src="{{man.image}}" class="card-img-top panier" alt="...">
             <div class="card-body">
               <h5 class="card-title panierName">{{man.brand}} - {{ man.name }}</h5>
               <p class="card-text panier">{{man.price}}</p>
-              <button type="button" class="btn btn-primary panier">Ajouter au panier</button>
+              <a href="{{path('show_parfum',{id : man.id })}}" class="btn btn-primary panier">Ajouter au panier</a>
             </div>
           </div>
 </article>

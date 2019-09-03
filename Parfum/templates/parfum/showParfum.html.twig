@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<article class="container" id="{{ parfum.id }}">
+<div class="jumbotron">
+    <h1 class="display-3">{{parfum.brand}}</h1>
+    <h3 class="display-6">{{parfum.name}}</h3>
+    <img src="{{parfum.image}}" class="lead"/p>
+    <hr class="my-4">
+    
+    <p>{{parfum.sex}}</p>
+    <p>{{parfum.contenance}}</p>
+    <select name="quantityFragrance" id="quantityFragrance">
+       
+        
+    </select>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg panier" href="#" role="button">Ajouter au panier</a>
+    </p>
+  </div>
+</article>
+{% endblock %}

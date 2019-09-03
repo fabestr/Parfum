@@ -17,7 +17,7 @@ class OrderLine
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Orders", inversedBy="oderLines")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Orders", inversedBy="orderLines")
      * @ORM\JoinColumn(nullable=false)
      */
     private $orders;

@@ -69,7 +69,7 @@ class Orders
     }
 
     /**
-     * @return Collection|OderLine[]
+     * @return Collection|OrderLine[]
      */
     public function getOderLines(): Collection
     {
