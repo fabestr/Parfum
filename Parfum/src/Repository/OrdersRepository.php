@@ -25,7 +25,7 @@ class OrdersRepository extends ServiceEntityRepository
     public function resumeOrder($value)
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
+            ->andWhere('o.user = :val')
             ->setParameter('val', $value)
             ->orderBy('o.id', 'ASC')
             ->setMaxResults(10)
