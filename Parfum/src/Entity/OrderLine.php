@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OderLineRepository")
  */
-class OderLine
+class OrderLine
 {
     /**
      * @ORM\Id()

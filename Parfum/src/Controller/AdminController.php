@@ -19,8 +19,6 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/", name="admin_index")
-     *
-     * @return void
      */
     public function index():Response
     {
@@ -29,9 +27,8 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/parfum_homme", name="admin_parfum_man")
+     * @Route("/parfum_homme" ,name="admin_parfum_man")
      *
-     * @return void
      */
     public function showAdminParfumMan(ParfumRepository $parfum)
     {
@@ -47,7 +44,7 @@ class AdminController extends AbstractController
      *
      * @return void
      */
-    public function showAdminParfumWoman()
+    public function showAdminParfumWoman(ParfumRepository $parfum)
     {
         $list = $parfum->allWomanParfum();
 
