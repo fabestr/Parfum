@@ -34,7 +34,7 @@
                             <a class="nav-link" href="{{ path('app_register')}}">s'enregistrer</a>
                           </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="{{ path('order')}}">Panier</a>
+                          <a class="nav-link" href="{{ path('order')}}">Panier<span id="nbpanier"></span></a>
                         </li>
                       </ul>
                       <form class="form-inline my-2 my-lg-0">
@@ -50,6 +50,10 @@
         
            
         
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %} <script src="{{asset('/js/jquery.js')}}"></script> 
+        <script src="{{asset('/js/panier.js')}}"></script>
+       
+        {% endblock %}
+       
     </body>
 </html>

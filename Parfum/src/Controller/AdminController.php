@@ -29,7 +29,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/parfum_homme" name="admin_parfum_man")
+     * @Route("/parfum_homme", name="admin_parfum_man")
      *
      * @return void
      */
@@ -43,7 +43,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/parfum_femme" name="admin_parfum_woman")
+     * @Route("/parfum_femme",name="admin_parfum_woman")
      *
      * @return void
      */

@@ -19,11 +19,10 @@ class OrdersRepository extends ServiceEntityRepository
         parent::__construct($registry, Orders::class);
     }
 
-    // /**
-    //  * @return Orders[] Returns an array of Orders objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Orders[] Returns an array of Orders objects
+    */
+    public function resumeOrder($value)
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.exampleField = :val')
@@ -34,7 +33,7 @@ class OrdersRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+   
 
     /*
     public function findOneBySomeField($value): ?Orders
