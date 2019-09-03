@@ -12,10 +12,12 @@
     
     <p>{{parfum.sex}}</p>
     <p>{{parfum.contenance}}</p>
-    <select name="quantityFragrance" id="quantityFragrance">
-       
+    <p> <select name="quantityFragrance" id="quantityFragrance">
+        {% for i in 0..10 %}
+        <option value="{{ i }}">{{ i }}</option> 
+    {% endfor %}
         
-    </select>
+    </select></p>
     <p class="lead">
       <a class="btn btn-primary btn-lg panier" href="#" role="button">Ajouter au panier</a>
     </p>
