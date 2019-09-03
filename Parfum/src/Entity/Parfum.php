@@ -153,14 +153,14 @@ class Parfum
     }
 
     /**
-     * @return Collection|OderLine[]
+     * @return Collection|OrderLine[]
      */
     public function getOrderLine(): Collection
     {
         return $this->orderLine;
     }
 
-    public function addOrderLine(OderLine $orderLine): self
+    public function addOrderLine(OrderLine $orderLine): self
     {
         if (!$this->orderLine->contains($orderLine)) {
             $this->orderLine[] = $orderLine;
@@ -170,7 +170,7 @@ class Parfum
         return $this;
     }
 
-    public function removeOrderLine(OderLine $orderLine): self
+    public function removeOrderLine(OrderLine $orderLine): self
     {
         if ($this->orderLine->contains($orderLine)) {
             $this->orderLine->removeElement($orderLine);

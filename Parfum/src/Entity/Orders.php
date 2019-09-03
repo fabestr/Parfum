@@ -76,7 +76,7 @@ class Orders
         return $this->oderLines;
     }
 
-    public function addOderLine(OderLine $oderLine): self
+    public function addOderLine(OrderLine $oderLine): self
     {
         if (!$this->oderLines->contains($oderLine)) {
             $this->oderLines[] = $oderLine;
@@ -86,7 +86,7 @@ class Orders
         return $this;
     }
 
-    public function removeOderLine(OderLine $oderLine): self
+    public function removeOderLine(OrderLine $oderLine): self
     {
         if ($this->oderLines->contains($oderLine)) {
             $this->oderLines->removeElement($oderLine);
