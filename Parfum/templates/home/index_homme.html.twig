@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container">
-    <h1>Parfums Homme</h1>
+    <h1>Sélection de Parfums Homme</h1>
+
+    <div class="row justify-content-around">
     {% for man in mens %}
-<article >
-    <div  class="card panier" style="width: 18rem;">
+
+    <div  class="card panier my-2" style="width: 18rem;">
             <img src="{{man.image}}" class="card-img-top panier" alt="...">
             <div class="card-body">
               <h5 class="card-title panierName">{{man.brand}} - {{ man.name }}</h5>
@@ -13,10 +14,10 @@
               <a href="{{path('show_parfum',{id : man.id })}}" class="btn btn-primary panier">Ajouter au panier</a>
             </div>
           </div>
-</article>
-    {% endfor %}
 
-</div>
+    {% endfor %}
+  </div>
+
 
 
 {% endblock  %}
