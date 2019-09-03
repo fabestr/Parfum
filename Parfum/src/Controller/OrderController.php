@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Orders;
+use App\Entity\OrderLine;
 use App\Repository\OrdersRepository;
 use App\Repository\ParfumRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,7 +36,7 @@ class OrderController extends AbstractController
      *@Route("/add-to-cart",name="addToCart")
      * @return void
      */
-    public function addToCart(Request $request,OrdersRepository $orderRequest)
+    public function addToCart(Request $request,OrdersRepository $orderRequest,ParfumRepository $parfum)
     {
         $idParfum = $request->request->get('idParfum');
         $quantity = $request->request->get('quantity');
@@ -43,7 +44,7 @@ class OrderController extends AbstractController
         $user_id = $user->getId();
         
        
-        if($orderRequest->resumeOrder($user_id)== null)
+        if($orderRequest->resumeOrder($user_id) == null)
         {
             
             $order = new Orders;
@@ -52,11 +53,22 @@ class OrderController extends AbstractController
     
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($order);
-            $entityManager->flush();
+         
 
 
 
             $order_id = $order->getId();
+          
+            $result = $parfum->findParfum($idParfum);
+            
+
+            $orderLine = new OrderLine;
+            $orderLine->setOrders($order)
+                      ->setQuantity($quantity)
+                      ->setParfum($result[0]);
+
+                      $entityManager->persist($orderLine);
+            $entityManager->flush();  
             
             $payload = [
             "id" => $idParfum,

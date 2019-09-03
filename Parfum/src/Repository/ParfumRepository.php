@@ -44,22 +44,19 @@ class ParfumRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // /**
-    //  * @return Parfum[] Returns an array of Parfum objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Parfum[] Returns an array of Parfum objects
+    */
+    public function findParfum($value)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+            ->andWhere('p.id = :val')
             ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+   
 
     /*
     public function findOneBySomeField($value): ?Parfum
