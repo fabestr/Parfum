@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body%}
+<h1>Sélection de Parfums Femmes</h1>
 
+<div class="row justify-content-around">
     {% for woman in women  %}
-    <div class="card" style="width: 18rem;">
+    <div class="card my-2" style="width: 18rem;">
             <img src="{{woman.image}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{woman.brand}} - {{ woman.name }}</h5>
@@ -12,5 +14,5 @@
             </div>
           </div>
     {% endfor %}
-
+</div>
 {% endblock %}
