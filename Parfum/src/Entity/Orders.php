@@ -30,13 +30,13 @@ class Orders
     private $orderDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OderLine", mappedBy="orders")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderLine", mappedBy="orders")
      */
-    private $oderLines;
+    private $orderLines;
 
     public function __construct()
     {
-        $this->oderLines = new ArrayCollection();
+        $this->orderLines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,16 +71,16 @@ class Orders
     /**
      * @return Collection|OrderLine[]
      */
-    public function getOderLines(): Collection
+    public function getOrderLines(): Collection
     {
-        return $this->oderLines;
+        return $this->orderLines;
     }
 
-    public function addOderLine(OrderLine $oderLine): self
+    public function addOrderLine(OrderLine $orderLine): self
     {
-        if (!$this->oderLines->contains($oderLine)) {
-            $this->oderLines[] = $oderLine;
-            $oderLine->setOrders($this);
+        if (!$this->orderLines->contains($orderLine)) {
+            $this->orderLines[] = $orderLine;
+            $orderLine->setOrders($this);
         }
 
         return $this;
