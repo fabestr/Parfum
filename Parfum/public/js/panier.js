@@ -5,7 +5,7 @@ function test(){
    var id = $('article').attr('id') ;
   console.log(id)
    $.ajax({
-    url:'/order',
+    url:'/add-to-cart',
     type: "POST",
     dataType: "json",
     data: {
