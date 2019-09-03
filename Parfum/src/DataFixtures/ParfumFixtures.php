@@ -113,7 +113,6 @@ class ParfumFixtures extends Fixture
             }else if($parfum->getBrand() == 'Jean-Paul Gaultier' && $parfum->getSex() == 'woman'){
                 $parfum->setName($faker->unique()->randomElement($array = array ('Ma dame', 'Classique','La belle','Scandal à Paris')));
             }
-
             $parfum->setPrice($faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 120)); // 48.8932)
             $parfum->setContenance($faker->randomElement($array = array ('50 ml','75 ml', '100 ml')));
             $parfum->setImage($faker->imageUrl($width = 640, $height = 480, 'fashion'));
