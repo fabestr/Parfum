@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block boody %}
+
+{% for n in allNewsLetter %}
+    
+
+<div class="jumbotron">
+  <h1 class="display-4">{{n.title}}</h1>
+  <hr class="my-4">
+  <p>{{ n.body | slice(0,200) }} [...]</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Lire l'article</a>
+</div>
+
+{% endfor %}
+
+{% endblock %}

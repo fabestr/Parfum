@@ -2,11 +2,12 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Migrations\Version\Factory;
 use Faker;
 use App\Entity\User;
 use App\Entity\Parfum;
+use App\Entity\NewsLetter;
 
+use Doctrine\Migrations\Version\Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -119,6 +120,14 @@ class ParfumFixtures extends Fixture
             $parfum->setContenance($faker->randomElement($array = array ('50 ml','75 ml', '100 ml')));
             $parfum->setImage($faker->imageUrl($width = 640, $height = 480, 'fashion'));
             $manager->persist($parfum);
+        }
+
+        for($i = 0 ; $i<10 ; $i++)
+        {
+            $news = new NewsLetter();
+            $news->setTitle($faker->realText($maxNbChars = 50, $indexSize = 1));
+            $news->setBody($faker->realText($maxNbChars = 500, $indexSize = 2));
+            $manager->persist($news);
         }
         
         $manager->flush();

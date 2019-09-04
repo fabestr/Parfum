@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}add newsletter{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Créer une nouvelle newsletter</h1>
+
+
+{{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.body) }}
+
+    {{ form_row(form.submit) }}
+    {{ form_end(form,  {'render_rest': false}) }}
+
+{% endblock %}

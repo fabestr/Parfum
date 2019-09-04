@@ -77,6 +77,11 @@ class User implements UserInterface
      */
     private $payments;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $newsletter = false;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -293,5 +298,17 @@ class User implements UserInterface
     public function __toString()
     {
         return (string) $this->firstName;
+    }
+
+    public function getNewsletter(): ?bool
+    {
+        return $this->newsletter;
+    }
+
+    public function setNewsletter(?bool $newsletter): self
+    {
+        $this->newsletter = $newsletter;
+
+        return $this;
     }
 }
