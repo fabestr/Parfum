@@ -2,6 +2,10 @@
 
 
 {% block body %}
-
+<p>lu</p>
+    {% for product in products  %}
+    <p>parfum : {{product.parfum.name}}</p>
+   <p> quantité : {{product.quantity}} </p>  
+    {% endfor %} 
 
 {% endblock %}
