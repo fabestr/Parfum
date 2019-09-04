@@ -25,8 +25,13 @@ class OrdersRepository extends ServiceEntityRepository
     public function resumeOrder($value)
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.user = :val')
-            ->setParameter('val', $value)
+            ->select('o')
+            ->Where('o.user = :val')
+            ->andWhere('o.status = :status')
+            ->setParameters([
+                'val'=> $value,
+                'status' => 'En cour'
+            ])
             ->orderBy('o.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
@@ -35,15 +40,15 @@ class OrdersRepository extends ServiceEntityRepository
     }
    
 
-    /*
-    public function findOneBySomeField($value): ?Orders
+    
+    public function findOnePanier($value): ?Orders
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
+            ->andWhere('o. = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+  
 }

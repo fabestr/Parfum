@@ -4,6 +4,7 @@ $(".panier").on("click",test)
 function test(){
    var id = $('article').attr('id') ;
    var quantity = $('#quantityFragrance').val()
+   var name = $('.nameFragrance').val()
   console.log(id)
    $.ajax({
     url:'/add-to-cart',
@@ -11,7 +12,8 @@ function test(){
     dataType: "json",
     data: {
         "idParfum": id,
-        "quantity": quantity
+        "quantity": quantity,
+        "name" : name
         
     },
     async: true,
