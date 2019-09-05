@@ -5,12 +5,13 @@
 
 <a href="{{ path ('admin_newsletter_add') }}"><button type="button" class="btn btn-outline-primary my-3">Créer une newsletter</button></a>
 
-<table class="table table-dark my-5">
-  <thead>
+<table class="table my-5">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">id</th>
       <th scope="col">Titre</th>
-      <th scope="col">Corp de la new letter</th>
+      <th scope="col">Corp de la newsletter</th>
+      <th scope="col">actions</th>
     </tr>
   </thead>
   <tbody>
@@ -21,8 +22,15 @@
       <th scope="row"> {{ n.id }} </th>
       <td>{{ n.title }}</td>
       <td>{{ n.body }}</td>
+      <td>
+          <a href="{{ path('admin_newsletter_show', {'id': n.id}) }}">show</a>
+          <a href="{{ path('admin_newsletter_edit', {'id': n.id}) }}">edit</a>
+      </td>
     </tr>
- 
+ {% else %}
+      <tr>
+          <td colspan="4">no records found</td>
+      </tr>
     {% endfor %}
  </tbody>
 </table>
