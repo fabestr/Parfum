@@ -73,29 +73,38 @@ class AdminController extends AbstractController
         ]);
     }
 
-    
-    /* public function addNewsLetter(Request $request) : Response
+     /**
+     * @Route("/newsletter/{id}", name="admin_newsletter_show", methods={"GET"})
+     */
+    public function show(NewsLetter $newsLetter): Response
     {
-        $newsletter = new NewsLetter();
-        $form = $this->createForm(NewsLetterFormType::class, $newsletter);
+        return $this->render('admin/show_newsletter.html.twig', [
+            'news_letter' => $newsLetter,
+        ]);
+    }
+
+    /**
+     * @Route("/newsletter//{id}/edit", name="admin_newsletter_edit", methods={"GET","POST"})
+     * 
+     */
+    public function edit(Request $request, NewsLetter $newsLetter): Response
+    {
+        $form = $this->createForm(NewsLetterType::class, $newsLetter);
         $form->handleRequest($request);
-        
 
         if ($form->isSubmitted() && $form->isValid()) {
-            var_dump('coucou');
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($newsletter);
-            $entityManager->flush();
+            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_newsletter');
+            return $this->redirectToRoute('admin_newsletter_index');
         }
 
-        return $this->render('admin/newsletter_add.html.twig', [
-            'newsletter' => $newsletter,
-            'newsLetterFormType' => $form->createView(),
+        return $this->render('admin/edit_newsletter.html.twig', [
+            'news_letter' => $newsLetter,
+            'form' => $form->createView(),
         ]);
-    } */
+    }
 
+    
     /**
      * @Route("/newsletter/add", name="admin_newsletter_add", methods={"GET","POST"})
      *
@@ -113,13 +122,27 @@ class AdminController extends AbstractController
             $entityManager->persist($newsLetter);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_newsletter');
+            return $this->redirectToRoute('admin_newsletter_index');
         }
 
         return $this->render('admin/newsletter_add.html.twig', [
             'news_letter' => $newsLetter,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("newsletter/{id}", name="admin_newsletter_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, NewsLetter $newsLetter): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$newsLetter->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($newsLetter);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_newsletter_index');
     }
     
 }
