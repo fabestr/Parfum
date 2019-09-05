@@ -24,7 +24,8 @@ class PanierMaker
         {
              $order = new Orders;
             $order->setUser($user)
-                  ->setOrderDate(new \dateTime());
+                  ->setOrderDate(new \dateTime())
+                  ->setStatus('En cour');
     
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($order);
@@ -132,7 +133,9 @@ class PanierMaker
     {
         $order = new Orders;
         $order->setUser($user)
-              ->setOrderDate(new \dateTime());
+              ->setOrderDate(new \dateTime())
+              ->setStatus('En cour');
+
 
        
         $entityManager->persist($order);
@@ -154,7 +157,7 @@ class PanierMaker
      
     }
 
-    public function isProductInOrders(Int $idParfum,ParfumRepository $parfum,OrdersRepository $orderRequest,OrderLineRepository $orderLineRepo)
+    public function isProductInOrders(Int $idParfum,ParfumRepository $parfum,OrdersRepository $orderRequest,OrderLineRepository $orderLineRepo, Int $user_id)
     {
         $result = $parfum->find($idParfum)->getId();
         var_dump($result);
@@ -189,18 +192,22 @@ class PanierMaker
         $orderLine->setOrders($orderListe[0])
                   ->setQuantity($quantity)
                   ->setParfum($parfumObject);
+                
 
                   $entityManager->persist($orderLine);
              $entityManager->flush();  
            
     }
 
-    public function addQuantityProduct(EntityManagerInterface $entityManager,OrderLineRepository $orderLineRepo)
+    public function addQuantityProduct(EntityManagerInterface $entityManager,OrderLineRepository $orderLineRepo,OrdersRepository $orderRequest,Int $user_id,Int $quantity)
     {
+        $showOrder = $orderRequest->findOneBy(['status'=>'En cour', 'user'=>$user_id]);
+        $orderId = $showOrder->getId();
         $orderLineQuant = $entityManager->getRepository(OrderLine::class)->find($orderId);
 
                 $quantityProduct = 0;
 
+                $showOrderLine = $orderLineRepo->findBy(['orders'=> $orderId]);
                 for($i = 0; $i<count($showOrderLine); $i++){
                     $orderItem = $showOrderLine[$i];
                     

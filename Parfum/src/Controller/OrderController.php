@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Orders;
 use App\Entity\OrderLine;
 use App\Panier\PanierMaker;
+use App\TraitApp\TraitReferer;
 use App\Repository\OrdersRepository;
 use App\Repository\ParfumRepository;
 use App\Repository\OrderLineRepository;
@@ -19,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OrderController extends AbstractController
 {
+    use TraitReferer;
     /**
      * Undocumented function
      *@Route("/order",name="order")
@@ -49,6 +51,7 @@ class OrderController extends AbstractController
      */
     public function addToCart(Request $request,OrdersRepository $orderRequest,ParfumRepository $parfum,OrderLineRepository $orderLineRepo,PanierMaker $panierMaker)
     {
+        
         $idParfum = $request->request->get('idParfum');
         $quantity = $request->request->get('quantity');
         $name = $request->request->get('name');
@@ -63,10 +66,11 @@ class OrderController extends AbstractController
         if(empty($orderListe))
         {
             $panierMaker->newPanier( $user, $entityManager, $parfum ,  $idParfum,  $quantity);
-
+            $params = $this->getRefererParams();
+            return $this->redirect($params);
         }else{
             
-           $filtered = $panierMaker->isProductInOrders( $idParfum, $parfum,$orderRequest, $orderLineRepo);
+           $filtered = $panierMaker->isProductInOrders( $idParfum, $parfum,$orderRequest, $orderLineRepo,$user_id);
             
 
             if(empty($filtered))
@@ -75,7 +79,7 @@ class OrderController extends AbstractController
                 return new JsonResponse();
             }else
             {
-                $panierMaker->addQuantityProduct($entityManager, $orderLineRepo);
+                $panierMaker->addQuantityProduct($entityManager, $orderLineRepo,$orderRequest,$user_id,$quantity);
             }
                
           
