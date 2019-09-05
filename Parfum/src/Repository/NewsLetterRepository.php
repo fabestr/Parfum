@@ -47,4 +47,13 @@ class NewsLetterRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function find4Newsletter()
+    {
+        return $this->createQueryBuilder('n')
+            ->select('n')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
 }

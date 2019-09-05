@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div class="jumbotron">
+  <h1 class="display-3"> {{news_letter.title }}</h1>
+  <hr class="my-4">
+  <p>{{news_letter.body}}</p>
+  <p class="lead">
+    <a class="btn btn-link" href="#" role="button">s'abonner à la newslettre</a>
+  </p>
+</div>
+
+{% endblock %}

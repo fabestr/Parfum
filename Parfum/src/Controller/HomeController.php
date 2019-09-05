@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ParfumRepository;
+use App\Repository\NewsLetterRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,11 +18,12 @@ class HomeController extends AbstractController
      *@Route("/", name="home")
      * @return void
      */
-    public function index(ParfumRepository $parfum)
+    public function index(ParfumRepository $parfum, NewsLetterRepository $newsletter )
     {
+       $list = $newsletter->find4Newsletter();
        
        return $this->render('home/index.html.twig',[
-            
+            'newsletters' => $list
         ]);
     }
 

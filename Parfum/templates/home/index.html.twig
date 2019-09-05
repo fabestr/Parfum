@@ -2,46 +2,65 @@
 
 
 {% block body %}
-
-<div class="bd-example my-5">
-  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner"  >
-      <div class="carousel-item active" style="height:500px;">
-        <img style="height:500px; position:absolute; object-fit:cover;  top: 0; left: 0;" src="{{ asset('/image/antique-art-blur-2814832.jpg') }}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+<div class="row">
+  <div class="col-8 bd-example my-5">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner"  >
+        <div class="carousel-item active" style="height:500px;">
+          <img style="height:500px; position:absolute; object-fit:cover;  top: 0; left: 0;" src="{{ asset('/image/antique-art-blur-2814832.jpg') }}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </div>
+        <div class="carousel-item" style="height:500px;">
+          <img style="height:500px; position:absolute; object-fit:cover;  top: 0; left: 0;" src="{{ asset('/image/aroma-bottle-close-up-1653085.jpg') }}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div class="carousel-item" style="height:500px;">
+          <img style="height:500px; position:absolute; object-fit:cover;  top: 0; left: 0;" src="{{ asset('/image/bottle-container-glass-1830450.jpg') }}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
         </div>
       </div>
-      <div class="carousel-item" style="height:500px;">
-        <img style="height:500px; position:absolute; object-fit:cover;  top: 0; left: 0;" src="{{ asset('/image/aroma-bottle-close-up-1653085.jpg') }}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-      </div>
-      <div class="carousel-item" style="height:500px;">
-        <img style="height:500px; position:absolute; object-fit:cover;  top: 0; left: 0;" src="{{ asset('/image/bottle-container-glass-1830450.jpg') }}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-        </div>
-      </div>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
-</div>
 
+  <div class="col-3">
+<h4 class="my-4">Les newsletters</h4>
+
+  <p class="lead">
+    <a class="btn btn-link" href="{{ path('newsletter_subscribe') }}" role="button">s'abonner à la newsletter</a>
+  </p>
+    {% for n in newsletters %}
+  
+    <div class="jumbotron">
+      <h3>{{ n.title }}</h3>
+      <p class="lead">{{ n.body | slice(0,200) }} [...]</p>
+      <hr class="my-4">
+      <a class="btn btn-primary btn-lg" href="{{ path('newsletter_show', {'id': n.id}) }}" role="button">Learn more</a>
+    </div>
+    {% endfor %}
+  </div>
+  
+
+</div>
 {% endblock %}

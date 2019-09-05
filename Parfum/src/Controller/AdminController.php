@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Parfum;
 use App\Entity\NewsLetter;
 use App\Form\NewsLetterType;
+use App\Event\NewsletterEvent;
 use App\Form\NewsLetterFormType;
 use App\Repository\UserRepository;
 use App\Repository\ParfumRepository;
@@ -13,6 +14,7 @@ use App\Repository\NewsLetterRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -64,7 +66,7 @@ class AdminController extends AbstractController
      * @param NewsLetterRepository $newsletter
      * @return void
      */
-    public function showAdminNewletter(NewsLetterRepository $newsletter)
+    public function showAdminNewsletter(NewsLetterRepository $newsletter)
     {
         $allNewsletter = $newsletter->findAll();
 
@@ -74,7 +76,7 @@ class AdminController extends AbstractController
     }
 
      /**
-     * @Route("/newsletter/{id}", name="admin_newsletter_show", methods={"GET"})
+     * @Route("/newsletter/{id}", name="admin_newsletter_show", methods={"GET"} , requirements={"id"="\d+"})
      */
     public function show(NewsLetter $newsLetter): Response
     {
@@ -111,7 +113,7 @@ class AdminController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EventDispatcherInterface $dispatcher): Response
     {
         $newsLetter = new NewsLetter();
         $form = $this->createForm(NewsLetterType::class, $newsLetter);
@@ -121,6 +123,10 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newsLetter);
             $entityManager->flush();
+
+            //event pour envoi de la newsletter
+            $e = new NewsletterEvent($newsLetter);
+            $dispatcher->dispatch($e, NewsletterEvent::SENDER);
 
             return $this->redirectToRoute('admin_newsletter_index');
         }
